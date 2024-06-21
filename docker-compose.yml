@@ -1,0 +1,15 @@
+networks:
+  backend:
+services:
+  php:
+    build: ./docker/php
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+    ports:
+      - "8080:80"
+    networks:
+      - backend
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
